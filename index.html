@@ -50,18 +50,33 @@
 </head>
 <body class="bg-main text-slate-800">
 
-  <nav id="navbar" class="sticky top-0 flex justify-between items-center bg-main px-6 md:px-10 py-3 z-50 border-b border-accent shadow-sm transition-transform duration-300 ease-in-out">
-    <h1 class="text-xl font-semibold text-slate-900 tracking-wide">Portfolio</h1>
-    <ul class="hidden md:flex gap-8 text-sm font-medium text-slate-600">
-      <li class="nav-link-hover transition-colors duration-300"><a href="#home">Home</a></li>
-      <li class="nav-link-hover transition-colors duration-300"><a href="#about">Experience</a></li>
-      <li class="nav-link-hover transition-colors duration-300"><a href="#skills">Skills</a></li>
-      <li class="nav-link-hover transition-colors duration-300"><a href="#riwayat">History</a></li>
-      <li class="nav-link-hover transition-colors duration-300"><a href="#portfolio">Project</a></li>
-      <li class="nav-link-hover transition-colors duration-300"><a href="#contact">Contact</a></li>
-    </ul>
-    <button class="md:hidden text-slate-700 text-2xl">&#9776;</button>
-</nav>
+  <nav id="navbar" class="sticky top-0 z-50 transition-transform duration-300 ease-in-out relative">
+    <div class="flex justify-between items-center bg-main px-6 md:px-10 py-3 border-b border-accent shadow-sm">
+        <h1 class="text-xl font-semibold text-slate-900 tracking-wide">Portfolio</h1>
+        
+        <ul class="hidden md:flex gap-8 text-sm font-medium text-slate-600">
+          <li class="nav-link-hover transition-colors duration-300"><a href="#home">Home</a></li>
+          <li class="nav-link-hover transition-colors duration-300"><a href="#about">Experience</a></li>
+          <li class="nav-link-hover transition-colors duration-300"><a href="#skills">Skills</a></li>
+          <li class="nav-link-hover transition-colors duration-300"><a href="#riwayat">History</a></li>
+          <li class="nav-link-hover transition-colors duration-300"><a href="#portfolio">Project</a></li>
+          <li class="nav-link-hover transition-colors duration-300"><a href="#contact">Contact</a></li>
+        </ul>
+        
+        <button id="mobile-menu-button" class="md:hidden text-slate-700 text-2xl">&#9776;</button>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-main shadow-lg border-b border-accent">
+        <ul class="flex flex-col">
+            <li><a href="#home" class="block text-center text-slate-700 py-3 hover:bg-card">Home</a></li>
+            <li><a href="#about" class="block text-center text-slate-700 py-3 hover:bg-card">Experience</a></li>
+            <li><a href="#skills" class="block text-center text-slate-700 py-3 hover:bg-card">Skills</a></li>
+            <li><a href="#riwayat" class="block text-center text-slate-700 py-3 hover:bg-card">History</a></li>
+            <li><a href="#portfolio" class="block text-center text-slate-700 py-3 hover:bg-card">Project</a></li>
+            <li><a href="#contact" class="block text-center text-slate-700 py-3 hover:bg-card">Contact</a></li>
+        </ul>
+    </div>
+  </nav>
 
   <main class="container mx-auto px-6">
 
@@ -78,13 +93,13 @@
           A recent Telecommunications Engineering graduate specializing in RF design and antenna systems. I have a passion for translating complex theoretical concepts into practical and effective wireless solutions. My internship experiences in the defense and telecommunications industries have equipped me with robust technical skills and proven team collaboration abilities.
         </p>
         <div class="mt-10 flex flex-col md:flex-row justify-center gap-4">
-    <a href="cv_gandang.pdf" target="_blank" rel="noopener noreferrer" class="btn-primary text-white font-semibold py-3 px-6 rounded-full transition duration-300 transform hover:scale-105">
-      View CV
-    </a>
-    <a href="#contact" class="bg-card text-slate-800 font-semibold py-3 px-6 rounded-full hover:bg-gray-300 transition duration-300 border border-accent">
-      Contact Me
-    </a>
-</div>
+            <a href="cv_gandang.pdf" target="_blank" rel="noopener noreferrer" class="btn-primary text-white font-semibold py-3 px-6 rounded-full transition duration-300 transform hover:scale-105">
+              View CV
+            </a>
+            <a href="#contact" class="bg-card text-slate-800 font-semibold py-3 px-6 rounded-full hover:bg-gray-300 transition duration-300 border border-accent">
+              Contact Me
+            </a>
+        </div>
       </div>
     </section>
 
@@ -272,7 +287,7 @@
             
             <div class="p-8 flex-grow">
                 <h4 class="text-2xl font-bold text-slate-900">Capstone Project: Antenna Tracker for Drone Position Detection and Video Quality 
-Maintenance  </h4>
+Maintenance  </h4>
                 <p class="text-sm text-slate-500 mb-4">Telkom University, 2025</p>
                 <p class="mt-2 text-slate-600">
                     Designed and developed an automated antenna tracking system to improve the range and stability of real-time video transmission from drones for aerial mapping purposes.
@@ -334,8 +349,8 @@ Maintenance  </h4>
   <footer class="bg-card text-slate-500 text-sm">
     <div class="container mx-auto px-6 py-8">
       <div class="border-t border-accent pt-8 flex flex-col md:flex-row justify-between items-center">
-        <p>&copy; 2025 Gandang Samudra</p>
-        
+        <p>&copy; 2025 Gandang Samudra. All Rights Reserved.</p>
+        <p>Built with Tailwind CSS</p>
       </div>
     </div>
   </footer>
@@ -370,6 +385,22 @@ Maintenance  </h4>
                 content.style.maxHeight = content.scrollHeight + 'px';
                 button.textContent = 'Show Less';
             }
+        });
+    });
+
+    // Script untuk menu mobile (hamburger)
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuLinks = document.querySelectorAll('#mobile-menu a');
+
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // Menutup menu saat link di-klik
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
         });
     });
   </script>
